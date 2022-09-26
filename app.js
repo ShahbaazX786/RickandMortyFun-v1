@@ -1,20 +1,22 @@
+const eyes = document.querySelectorAll('.eye');
+const target = document.getElementById('target');
+const rekt = target.getBoundingClientRect();
+const targetX = rekt.left+rekt.width/2;
+const targetY = rekt.top+rekt.height/2;
+
+
 document.addEventListener('mousemove',(e)=>{
     const mouseX =e.clientX;
     const mouseY =e.clientY;
 
-    const target = document.getElementById('target');
-    const rekt = target.getBoundingClientRect();
-    const targetX = rekt.left+rekt.width/2;
-    const targetY = rekt.top+rekt.height/2;
-
     const angleDeg = angle(mouseX,mouseY,targetX,targetY);
 
 
-    console.log(angleDeg);
+    // console.log(angleDeg);
 
-    const eyes = document.querySelectorAll('.eye');
     eyes.forEach(eye => {
         eye.style.transform = `rotate(${90 + angleDeg}deg)`;
+        target.style.filter = `hue-rotate(${angleDeg}deg)`;
     })
 });
 
